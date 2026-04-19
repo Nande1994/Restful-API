@@ -8,6 +8,7 @@
             <class name="tests.HealthCheckTests"/>
             <class name="tests.AuthTests"/>
             <class name="tests.BookingTests"/>
+            <class name="tests.NegativeTests"/>
         </classes>
     </test>
 </suite>

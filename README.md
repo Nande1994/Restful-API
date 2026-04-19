@@ -27,6 +27,7 @@ The framework focuses on clean architecture, separation of concerns, and practic
 | Allure Report | Rich HTML reporting |
 | GitHub Actions | Continuous Integration |
 
+
 ---
 
 ## Framework Architecture
@@ -54,8 +55,60 @@ src/test/java
 │
 └── utils
     └── TestDataFactory.java
-    
-   
+   ----
+ ## Run Instructions
+
+### Clone Repository
+
+```bash
+git clone https://github.com/Nande1994/Restful-API.git
+cd Restful-API
+
+Execute All Tests
+mvn clean test
+
+Run TestNG Suite
+mvn test -DsuiteXmlFile=testng.xml
+
+Generate Allure Report
+allure serve allure-results
+
+## Assumptions
+
+The following assumptions were made during implementation:
+
+- The public Restful Booker API remains available during execution.
+- Valid authentication credentials remain unchanged.
+- Test data created during execution can be safely modified or deleted.
+- The environment is intended for test/demo purposes rather than production use.
+
+---
+
+
+## High-Level Test Scenarios
+
+### Positive Scenarios
+
+- Verify token generation with valid credentials.
+- Verify booking creation with valid data.
+- Verify booking retrieval by ID.
+- Verify booking update using authenticated access.
+- Verify booking deletion using authenticated access.
+- Verify API health check response.
+
+### Negative Scenarios
+
+- Verify deleted booking returns `404`.
+
+### Why These Were Prioritised
+
+These scenarios were selected to cover the highest-value business flows:
+
+- Authentication
+- Core CRUD booking lifecycle
+- Access control
+- Service availability
+
 ## Design Principles Applied
 
 ### Separation of Concerns
@@ -94,31 +147,96 @@ Without impacting existing tests
 ### Service Monitoring
 - Verify `/ping` endpoint returns healthy response
 
+## Test Coverage Summary
 
-High-Level Test Scenarios
-Authentication
-Verify that a token is generated when valid credentials are submitted.
-Booking Management
-Verify that a booking can be created successfully with valid data.
-Verify that a created booking can be retrieved by booking ID.
-Verify that an existing booking can be updated successfully using a valid token.
-Verify that an existing booking can be deleted successfully using a valid token.
-Verify that retrieving a deleted booking returns 404.
-Health Check
-Verify that the health check endpoint returns a successful response.
+### Positive Scenarios
 
-If you want it a little more senior, use this version:
+- Verify token generation with valid credentials
+- Verify booking creation with valid payload data
+- Verify booking retrieval by booking ID
+- Verify booking update using authenticated access
+- Verify booking deletion using authenticated access
+- Verify API health check endpoint response
 
-High-Level Test Scenarios
+### Negative Scenarios
 
+- Verify invalid login does not return a usable token
+- Verify booking update without token returns forbidden response
+- Verify retrieving a non-existing booking returns `404`
 
-The framework currently covers the following high-level scenarios:
+### Test Strategy
 
-Authentication token generation with valid credentials
-Booking creation with valid payload data
-Booking retrieval by ID
-Booking update using authenticated access
-Booking deletion using authenticated access
-Validation that deleted bookings are no longer accessible
-API health check verification
+Scenarios were prioritised using a risk-based approach focusing on:
 
+- Authentication security
+- Core booking business flows
+- Access control
+- API availability
+- Defensive negative coverage
+
+## Known Limitations
+
+- Public APIs may occasionally be unstable or rate limited.
+- Test execution currently targets a single environment.
+- No database-level validation is available for backend verification.
+- Parallel execution has not yet been enabled.
+- Additional negative and boundary scenarios could be expanded further.
+ 
+## Reporting
+
+The framework integrates with **Allure Reports** to provide clear and readable test execution results for both technical and non-technical stakeholders.
+
+### Reporting Features
+
+- Pass / Fail execution summary
+- Test duration and execution timeline
+- Environment details
+- Individual test case results
+- Request / response attachments (where applicable)
+- Historical trends (when report history is retained)
+
+### Generate Report Locally
+
+```bash
+allure serve allure-results   
+## CI/CD
+
+A GitHub Actions pipeline has been implemented to automate test execution and provide fast feedback on code changes.
+
+### Trigger Conditions
+
+- Push to `main`
+- Pull requests
+
+### Pipeline Responsibilities
+
+- Check out source code
+- Set up Java 17
+- Restore Maven dependencies using cache
+- Execute automated API tests
+- Upload test artifacts
+- Upload Allure results
+
+### Outcome
+
+This ensures that tests run consistently in a clean environment and that execution results are accessible from GitHub Actions.   
+
+## Future Enhancements
+
+Given additional time, the following improvements would be implemented:
+
+- JSON schema validation for stronger response contract checks
+- Data-driven testing using external test data sources
+- Parallel execution to reduce runtime
+- Retry logic for unstable environments
+- Environment profiles (DEV / QA / UAT / PROD)
+- Published Allure HTML reports via GitHub Pages
+- Expanded negative, boundary, and edge-case coverage
+- Docker support for consistent execution across machines
+- Contract testing for API compatibility assurance
+- Integration with Jira / Test Management tools
+
+## Author
+
+**Sylvia Hili**  
+QA Engineer | Test Automation | API Testing | CI/CD
