@@ -199,6 +199,19 @@ The framework integrates with **Allure Reports** to provide clear and readable t
 
 ```bash
 allure serve allure-results   
+## Reporting
+
+Allure reporting is integrated for rich execution insights.
+
+Example report includes:
+
+- Passed / Failed tests
+- Execution timeline
+- Steps and attachments
+- Environment details
+
+![img.png](img.png)
+
 ## CI/CD
 
 A GitHub Actions pipeline has been implemented to automate test execution and provide fast feedback on code changes.
