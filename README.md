@@ -93,3 +93,32 @@ Without impacting existing tests
 
 ### Service Monitoring
 - Verify `/ping` endpoint returns healthy response
+
+
+High-Level Test Scenarios
+Authentication
+Verify that a token is generated when valid credentials are submitted.
+Booking Management
+Verify that a booking can be created successfully with valid data.
+Verify that a created booking can be retrieved by booking ID.
+Verify that an existing booking can be updated successfully using a valid token.
+Verify that an existing booking can be deleted successfully using a valid token.
+Verify that retrieving a deleted booking returns 404.
+Health Check
+Verify that the health check endpoint returns a successful response.
+
+If you want it a little more senior, use this version:
+
+High-Level Test Scenarios
+
+
+The framework currently covers the following high-level scenarios:
+
+Authentication token generation with valid credentials
+Booking creation with valid payload data
+Booking retrieval by ID
+Booking update using authenticated access
+Booking deletion using authenticated access
+Validation that deleted bookings are no longer accessible
+API health check verification
+
