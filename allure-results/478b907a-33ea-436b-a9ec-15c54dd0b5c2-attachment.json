@@ -1,0 +1,11 @@
+{
+    "firstname": "Sylvia Updated",
+    "lastname": "Hili",
+    "totalprice": 1800,
+    "depositpaid": false,
+    "bookingdates": {
+        "checkin": "2026-05-01",
+        "checkout": "2026-05-06"
+    },
+    "additionalneeds": "Lunch"
+}

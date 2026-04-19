@@ -1,0 +1,7 @@
+{
+  "name": "IntelliJ Local Run",
+  "type": "manual",
+  "buildOrder": 1,
+  "buildName": "API Automation Execution",
+  "reportName": "Allure Report"
+}
